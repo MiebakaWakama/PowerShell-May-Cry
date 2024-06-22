@@ -1,0 +1,2 @@
+generate filter for excel - for n in `cat ../powershell_may_cry_report2.csv`;do stat=0; while read x;do if [ -n "`echo "$n"|grep "$x"`" ];then stat=1; break;fi;done < ./remove2.txt; if [ $stat -ne 1 ];then echo $n;fi;done|grep powershell|tee filter.txt
+generate random string - cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-20} | head -n 1|awk '{print tolower($0)}'

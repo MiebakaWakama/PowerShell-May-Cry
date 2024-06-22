@@ -1,0 +1,48 @@
+2005  less Methodlist.txt                                                                                                                                   
+ 2006  cat Methodlist.txt|sed 's/\\/\/g'                                                                                                                     
+ 2007  cat Methodlist.txt|sed 's/\\/\\/g'                                                                                                                    
+ 2008  cat Methodlist.txt|sed "s/\\\\/\\/g"                                                                                                                  
+ 2009  cat Methodlist.txt|sed "s/inob/boy/g"                                                                                                                 
+ 2010  cat Methodlist.txt|sed "s/\\\\/\\/g"                                                                                                                  
+ 2011  cat Methodlist.txt|sed "s/(\\\\)/\\/g"                                                                                                                
+ 2012  cat Methodlist.txt|sed "s/(\\\\)/(\\)/g"                                                                                                              
+ 2013  cat Methodlist.txt|sed "s/(\\\\)/(\)/g"                                                                                                               
+ 2014* cat Methodlist.txt|sed s/(\\\\)/\/g"                                                                                                                  
+ 2015  cat Methodlist.txt|sed s/inob/boy/g                                                                                                                   
+ 2016  cat Methodlist.txt|sed s/\\\\/\\/g                                                                                                                    
+ 2017  cat Methodlist.txt|sed s/\\\\/'\\'/g                                                                                                                  
+ 2018  cat Methodlist.txt|sed s/\\\\/'\'/g                                                                                                                   
+ 2019  cat Methodlist.txt|sed s/'\\'/'\'/g
+ 2020  less Methodlist.txt 
+ 2021  less Methodlist.txt|cut -d"," 2,3
+ 2022  less Methodlist.txt|cut -d"," -f2,3
+ 2023  less Methodlist.txt|cut -d"," -f2,4
+ 2024  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'
+ 2025  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"
+ 2026  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'
+ 2027  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*/\\/g'
+ 2028  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*/\/g'
+ 2029  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*/\\/g'
+ 2030  less Methodlist.txt|cut -d"," -f2,4|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'
+ 2031  less Methodlist.txt|cut -d"," -f2,4,6.8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'
+ 2032  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'
+ 2033  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|cut -d"," -f1,2,4,5,7,8
+ 2034  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|cut -d"," -f1,2,4,5,7,9
+ 2035  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|cut -d"," -f1,2,4,5,7,10
+ 2036  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'
+ 2037  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|cut -d"," -f1,2,4,5,7,9|tr -d '"'
+ 2038  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|tr -d '"'
+ 2039  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|tr -d '"'|sed 's/inob,/inob\-/g'
+ 2040  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|tr -d '"'|sed -e 's/inob,/inob\-/g' -e 's/instealth,/instealth-/g'
+ 2041  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|tr -d '"'|sed -e 's/inob,/inob\-/g' -e 's/instealth,/instealth-/g'|tr ',' '\n'
+2042  less Methodlist.txt|cut -d"," -f2,4,6,8,10,12|sed 's/,[^"].*//g'|tr -d ")"|tr '\' '*'|sed 's/\*\*/\\/g'|tr -d '"'|sed -e 's/inob,/inob\-/g' -e 's/instealth,/instealth-/g'|tr ',' '\n' > Methodlist2.txt
+ 2043  vim Methodlist2.txt
+ 2044  less Methodlist2.txt 
+ 2045  cat Methodlist2.txt|tr "\n" "," 
+ 2046  cat Methodlist2.txt|tr "\n" ","  > headers.txt
+ 2047  cat Methodlist2.txt
+ 2048  cat Methodlist2.txt|uniq 
+ 2049  cat Methodlist2.txt|uniq > Methodlist3.txt
+ 2050  cat Methodlist3.txt
+ 2051  vim Methodlist3.txt 
+ 2052  history

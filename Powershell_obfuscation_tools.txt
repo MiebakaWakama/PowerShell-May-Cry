@@ -1,0 +1,15 @@
+Powerhsell Obfuscators 
+- Invoke-obfuscation - https://github.com/danielbohannon/Invoke-Obfuscation
+- Invoke-Stealth - https://github.com/JoelGMSec/Invoke-Stealth
+- Chameleon  - https://github.com/klezVirus/chameleon - same as chimera 
+- Powerob - https://github.com/cwolff411/powerob
+- PyFuscation - https://github.com/CBHue/PyFuscation.git
+- Online powershell obfuscation - https://enscrypt.io/powershell-obfuscator-code-protection.php
+-  Invoke-PSObfuscation - https://github.com/gh0x0st/Invoke-PSObfuscation
+- 
+
+Useful Links
+- https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/
+- https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell
+
+Remember to apply psobfuscation singly 
