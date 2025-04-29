@@ -443,7 +443,7 @@ $listBox.SelectionMode = 'MultiExtended'
 [void] $listBox.Items.Add('Pen Test Rulez')
 [void] $listBox.Items.Add('Red Team Rulez')
 [void] $listBox.Items.Add('Blues Smell of Elderberries')
-[void] $listBox.Items.Add('Sean Rulez')
+[void] $listBox.Items.Add('Timmy Rulez')
 [void] $listBox.Items.Add('Running Out of Ideas')
 
 $listBox.Height = 70
@@ -691,7 +691,7 @@ $cred = "bogus"
 Get-ADGroupMember -Credential $cred -server test.com "Domain Admins"
 Get-ADComputer -Credential $cred -server test.com -LDAPFilter "(name=*testuser*)" |select name
 $alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-$inputname = "Sean"
+$inputname = "Timmy"
 $inputname = (($inputname.ToUpper()).Replace(" " , "")).ToCharArray() | Select-Object -Unique
 foreach ($letter in $inputname){
     $index = $alphabet.IndexOf("$letter") + 1
