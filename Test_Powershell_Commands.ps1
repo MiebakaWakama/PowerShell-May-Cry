@@ -688,8 +688,8 @@ if ($chocoinstalled -eq $null) {
         Write-Output "Chocolatey is already installed"
     }
 $cred = "bogus"
-Get-ADGroupMember -Credential $cred -server nike.com "Domain Admins"
-Get-ADComputer -Credential $cred -server nike.com -LDAPFilter "(name=*Sean*)" |select name
+Get-ADGroupMember -Credential $cred -server test.com "Domain Admins"
+Get-ADComputer -Credential $cred -server test.com -LDAPFilter "(name=*testuser*)" |select name
 $alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 $inputname = "Sean"
 $inputname = (($inputname.ToUpper()).Replace(" " , "")).ToCharArray() | Select-Object -Unique
