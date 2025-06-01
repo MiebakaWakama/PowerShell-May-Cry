@@ -1,9 +1,11 @@
 import os
 import time
 import re
+import argparse
 import string
 import random
 import threading
+import traceback
 import concurrent.futures
 from itertools import combinations
 from itertools import permutations
@@ -84,7 +86,6 @@ def characterfreq(filepath):
 #combine all powershell obfuscation tools and methods in a layered approaced for
 #each powerscript to be obfuscated
 def powershell_may_cry(toollist,scriptpath,tvalue):
-    #print("This is %d", tvalue)
     no_encode = 0
     no_launch = 0
     no_crypt = 0
@@ -148,7 +149,6 @@ def powershell_may_cry(toollist,scriptpath,tvalue):
         return outputfile
 
 #Test commands
-#inob("/mnt/hgfs/testscript.ps1", "Token\\String\\1")
 #instealth("./testscript.ps1","BetterXencrypt")
 #inpowerob("./powerob/PowerUP.ps1")
 #powfuscator("./testscript.ps1")
@@ -158,7 +158,7 @@ def powershell_may_cry(toollist,scriptpath,tvalue):
 #encode_powershell("testscript.ps1")
 
 def report(methodlist,scriptname,tvalue):
-    csvfile = open(f"C:\\Temp\\Powershell_obfuscation\\powershell_may_cry_report{tvalue}.csv",'a')
+    csvfile = open(f".\\powershell_may_cry_report{tvalue}.csv",'a')
     headers = ["inob-Token\\String\\1","inob-Token\\String\\2","inob-Token\\Command\\1","inob-Token\\Command\\2","inob-Token\\Command\\3","inob-Token\\Argument\\1","inob-Token\\Argument\\2","inob-Token\\Argument\\3","inob-Token\\Argument\\4","inob-Token\\Member\\1","inob-Token\\Member\\2","inob-Token\\Member\\3","inob-Token\\Member\\4","inob-Token\\Variable\\1","inob-Token\\Type\\1","inob-Token\\Type\\2","inob-Token\\Comment\\1","inob-Token\\Whitespace\\1","inob-Ast\\Namedattributeargumentast\\1","inob-Ast\\Paramblockast\\1","inob-Ast\\Scriptblockast\\1","inob-Ast\\Attributeast\\1","inob-Ast\\Binaryexpressionast\\1","inob-Ast\\Hashtableast\\1","inob-Ast\\Commandast\\1","inob-Ast\\Assignmentstatementast\\1","inob-Ast\\TypeExpressionast\\1","inob-Ast\\TypeConstraintast\\1","inob-String\\1","inob-String\\2","inob-String\\3","inob-Token\\All","inob-AST\\All","instealth-BetterXencrypt","instealth-PSObfuscation","instealth-ReverseB64","instealth-All","Chimera","Pyfuscator","Codecepticon","CharacterFreq","powerob","powfuscator","obfuscatepy","goaround","blanket","encpwsh","inob-Encoding\\1","inob-Encoding\\2","inob-Encoding\\3","inob-Encoding\\4","inob-Encoding\\5","inob-Encoding\\6","inob-Encoding\\7","inob-Encoding\\8","inob-Compress\\1","inob-Launcher\\PS\\0","inob-Launcher\\PS\\1","inob-Launcher\\PS\\2","inob-Launcher\\PS\\3","inob-Launcher\\PS\\4","inob-Launcher\\PS\\5","inob-Launcher\\PS\\6","inob-Launcher\\PS\\7","inob-Launcher\\PS\\8","inob-Launcher\\CMD\\0","inob-Launcher\\CMD\\1","inob-Launcher\\CMD\\2","inob-Launcher\\CMD\\3","inob-Launcher\\CMD\\4","inob-Launcher\\CMD\\5","inob-Launcher\\CMD\\6","inob-Launcher\\CMD\\7","inob-Launcher\\CMD\\8","inob-Launcher\\CMD\\9","inob-Launcher\\WMIC\\0","inob-Launcher\\WMIC\\1","inob-Launcher\\WMIC\\2","inob-Launcher\\WMIC\\3","inob-Launcher\\WMIC\\4","inob-Launcher\\WMIC\\5","inob-Launcher\\WMIC\\6","inob-Launcher\\WMIC\\7","inob-Launcher\\WMIC\\8","inob-Launcher\\Rundll\\0","inob-Launcher\\Rundll\\1","inob-Launcher\\Rundll\\2","inob-Launcher\\Rundll\\3","inob-Launcher\\Rundll\\4","inob-Launcher\\Rundll\\5","inob-Launcher\\Rundll\\6","inob-Launcher\\Rundll\\7","inob-Launcher\\Rundll\\8"]
     crow = [""] * len(headers)
     for method in methodlist:
@@ -348,41 +348,49 @@ obfmethods_mcombs = [(1,"inob",inob,"Token\\String\\1"),(2,"inob",inob,"Token\\S
               (160,"inob",inob,"Launcher\\Rundll\\8"),
              ]
 
-def exec_pmy(pcombs,tvalue,methods):
-    print(f"This is thread value: {tvalue}; this is no_combinations: {pcombs}")
-    scripts_dir = os.listdir("C:\\Temp\\Powershell_obfuscation\\Scripts")
-    no_combinations = pcombs
-    combs = combinations_plus(methods, no_combinations)
-    random.shuffle(combs)
-    os.mkdir(os.path.join("./",f"Combination_{no_combinations}",))
-    for n in combs:
-        for x in scripts_dir:
-            ffile = powershell_may_cry(n,f"C:\\Temp\\Powershell_obfuscation\\Scripts\\{x}",tvalue)
-            #powershell_may_cry(n, "./testscript.ps1")
-            if(ffile):
-                ffile_name = ffile.name
-                ffile.close()
-                report(n,ffile_name,tvalue)
-                os.rename(ffile_name,f"./Combination_{no_combinations}/{ffile_name}")
-                if os.path.exists(f"obfile{tvalue}.ps1"):
-                    os.remove(f"obfile{tvalue}.ps1")
-                if os.path.exists(f"inputfile{tvalue}.ps1"):
-                    os.remove(f"inputfile{tvalue}.ps1")
+def exec_pmy(pcombs,tvalue,methods,i_dir, o_dir):
+    try:
+        scripts_dir = os.listdir(i_dir)
+        no_combinations = pcombs
+        combs = combinations_plus(methods, no_combinations)
+        random.shuffle(combs)
+        os.mkdir(os.path.join(o_dir,f"Combination_{no_combinations}",))
+        for n in combs:
+            for x in scripts_dir:
+                ffile = powershell_may_cry(n,f"{i_dir}\\{x}",tvalue)
+                if(ffile):
+                    ffile_name = ffile.name
+                    ffile.close()
+                    report(n,ffile_name,tvalue)
+                    os.rename(ffile_name,f"{o_dir}/Combination_{no_combinations}/{ffile_name}")
+                    if os.path.exists(f"obfile{tvalue}.ps1"):
+                        os.remove(f"obfile{tvalue}.ps1")
+                    if os.path.exists(f"inputfile{tvalue}.ps1"):
+                        os.remove(f"inputfile{tvalue}.ps1")
+    except Exception as e:
+        print(f"Exception in thread {tvalue}: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 
 if __name__ == "__main__":
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
-#        executor.submit(exec_pmy, 1, 1, obfmethods)
-        #executor.submit(exec_pmy, 5, 5, obfmethods)
-        executor.submit(exec_pmy, 4, 4, obfmethods)
-#        executor.submit(exec_pmy, 3, 3, obfmethods_mcombs)
-#        executor.map(exec_pmy, range(1,2), range(1,2), obfmethods)
+    parser = argparse.ArgumentParser(description="Multithreaded PowerShell obfuscation engine")
+    parser.add_argument("-i", "--input-dir", required=False, help="Directory containing PowerShell scripts to obfuscate")
+    parser.add_argument("-o", "--output-dir", required=False, help="Directory to write output scripts to")
+    parser.add_argument("-t", "--threads", type=int, required=False, help="Number of threads to use")
+    parser.add_argument("-c", "--combinations", type=str, required=False, help="Number of combinations to run concurrently for generating obfuscated scripts\nseparated by comma e.g 1,2,3..")
 
-#    x = threading.Thread(target=exec_pmy, args=(2,2,obfmethods_mcombs))
-#    x.start()
-#    x.join()
-#report(obfmethods, "test_yhgte.ps1")
-#temp_list = combinations_plus([2,"b","b", "c"],3)
-#print(temp_list)
-#powershell_may_cry(obfmethods,"./testscript.ps1")
+    args = parser.parse_args()
+
+    if not args.input_dir or not args.output_dir or not args.threads:
+        parser.print_help()
+        exit(1)
+    
+    clist = [int(x) for x in args.combinations.split(',')]
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=args.threads);
+    for c in clist:
+        executor.submit(exec_pmy, c, c, obfmethods_mcombs, args.input_dir, args.output_dir)
+    
+    executor.shutdown(wait=True)
+
